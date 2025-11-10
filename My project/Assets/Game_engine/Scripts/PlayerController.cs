@@ -4,23 +4,10 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     private float currentSpeed = 0.0f;
-    // Animator 컴포넌트 참조 (private - Inspector에 안 보임)
-    private Animator animator;
-    
+
     void Start()
     {
-        // 게임 시작 시 한 번만 - Animator 컴포넌트 찾아서 저장
-        animator = GetComponent<Animator>();
-        
-        // 디버그: 제대로 찾았는지 확인
-        if (animator != null)
-        {
-            Debug.Log("Animator 컴포넌트를 찾았습니다!");
-        }
-        else
-        {
-            Debug.LogError("Animator 컴포넌트가 없습니다!");
-        }
+
     }
 void Update()
 {
@@ -54,24 +41,6 @@ void Update()
             transform.Translate(movement * currentSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (animator != null)
-            {
-                animator.SetBool("isJumping", true);
-                Debug.Log("점프!");
-            }
-        }
-        else
-        {
-                animator.SetBool("isJumping", false);
-            }
     
-    // Animator에 속도 전달
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", currentSpeed);
-            Debug.Log("Current Speed: " + currentSpeed);
-        }
 }
 }
